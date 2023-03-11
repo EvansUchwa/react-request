@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import useTodos from "./hooks/useTodos";
+import {
+  QueryClient, QueryClientProvider,
+} from 'react-query'
+import Todos from "./components/todos";
+
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <h1>Bienvenue sur l'application de fetch en React</h1>
+
+        <section style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '20px'
+        }}>
+          <Todos />
+        </section>
+
+      </div>
+    </QueryClientProvider>
+
   );
 }
 
